@@ -15,8 +15,8 @@ class player: #PacMan als Klasse definieren
         self.currentAnimationType = "Idle" #nur am Start nötig 
         self.playerSpriteIdle = ani.MySprite("character_Player_Idle", ("Player/Idle",))
         self.playerSpriteWalkHori = ani.MySprite("spriteSheet_Player_Hori", ("Player/WalkHori", 5, 1, 0, 0, 4))
-        self.playerSpriteWalkUp = ani.MySprite("character_Player_Up", ("Player/WalkUp",))
-        self.playerSpriteWalkDown = ani.MySprite("character_Player_Down", ("Player/WalkDown",))
+        self.playerSpriteWalkUp = ani.MySprite("character_Player_Up", ("Player/WalkUp",5, 1, 0, 0, 4))
+        self.playerSpriteWalkDown = ani.MySprite("character_Player_Down", ("Player/WalkDown",5, 1, 0, 0, 4))
 
         self.animationSlowDown = 5
         self.animationSlowDownCounter = 0
