@@ -32,7 +32,7 @@ class player: #PacMan als Klasse definieren
                          Spielfeld[pacman_x][pacman_y] = 0
                          pacman_x = x-1
                          Spielfeld[pacman_x][pacman_y] = 1
-                     if:
+                     else:
                          # check for collision with wall und Punkte sammeln
                          if (Spielfeld[pacman_x -1][pacman_y] != 2):
                              Spielfeld[pacman_x][pacman_y] = 0
