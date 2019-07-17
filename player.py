@@ -1,8 +1,8 @@
 import pygame
 import ani
 import globalVariables as gV
-#pacman_x= 9
-#pacmany_y= 6
+pacman_x= 9
+pacmany_y= 6
 
 class player: #PacMan als Klasse definieren 
 
@@ -28,7 +28,7 @@ class player: #PacMan als Klasse definieren
                      self.movementDirection[0] = -1
                      self.currentAnimationType = "Walk"
                      self.movementDirection[1] = 0 #Damit er nicht diagonal läuft
-                     '''if(pacman_x == 0):
+                     if(pacman_x == 0):
                          Spielfeld[pacman_x][pacman_y] = 0
                          pacman_x = x-1
                          Spielfeld[pacman_x][pacman_y] = 1
@@ -37,12 +37,12 @@ class player: #PacMan als Klasse definieren
                          if (Spielfeld[pacman_x -1][pacman_y] != 2):
                              Spielfeld[pacman_x][pacman_y] = 0
                              pacman_x = pacman_x - 1
-                             Spielfeld[pacman_x][pacman_y] = 1'''
+                             Spielfeld[pacman_x][pacman_y] = 1
                  elif event.key in (pygame.K_RIGHT, pygame.K_d):
                      self.movementDirection[0] = 1
                      self.currentAnimationType = "Walk"
                      self.movementDirection[1] = 0
-                     '''if(pacman_x + 1 >= x): 
+                     if(pacman_x + 1 >= x):
                          Spielfeld[pacman_x][pacman_y] = 0
                          pacman_x = 0
                          Spielfeld[pacman_x][pacman_y] = 1
@@ -51,12 +51,12 @@ class player: #PacMan als Klasse definieren
                          if (Spielfeld[pacman_x + 1][pacman_y] != 2):
                              Spielfeld[pacman_x][pacman_y] = 0
                              pacman_x = pacman_x + 1
-                             Spielfeld[pacman_x][pacman_y] = 1'''
+                             Spielfeld[pacman_x][pacman_y] = 1
                  elif event.key in (pygame.K_UP, pygame.K_w):
                      self.movementDirection[1] = -1
                      self.currentAnimationType = "Walk"
                      self.movementDirection[0] = 0
-                     '''if(pacman_y == 0):
+                     if(pacman_y == 0):
                          Spielfeld[pacman_x][pacman_y] = 0
                          pacman_y = y-1
                          Spielfeld[pacman_x][pacman_y] = 1
@@ -65,12 +65,12 @@ class player: #PacMan als Klasse definieren
                          if (Spielfeld[pacman_x][pacman_y - 1] != 2):  
                              Spielfeld[pacman_x][pacman_y] = 0
                              pacman_y = pacman_y - 1
-                             Spielfeld[pacman_x][pacman_y] = 1'''
+                             Spielfeld[pacman_x][pacman_y] = 1
                  elif event.key in (pygame.K_DOWN, pygame.K_s):
                      self.movementDirection[1] = 1
                      self.currentAnimationType = "Walk"
                      self.movementDirection[0] = 0
-                     '''if(pacman_y + 1 >= y):
+                     if(pacman_y + 1 >= y):
                          Spielfeld[pacman_x][pacman_y] = 0
                          pacman_y = 0
                          Spielfeld[pacman_x][pacman_y] = 1
@@ -79,7 +79,7 @@ class player: #PacMan als Klasse definieren
                          if (Spielfeld[pacman_x][pacman_y+1] != 2):
                              Spielfeld[pacman_x][pacman_y] = 0
                              pacman_y = pacman_y + 1
-                             Spielfeld[pacman_x][pacman_y] = 1'''
+                             Spielfeld[pacman_x][pacman_y] = 1
 
                  
 
