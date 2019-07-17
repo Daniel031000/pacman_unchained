@@ -454,8 +454,6 @@ def BauL1(Spielfeld): #Spielfeld von Level 1
     pass 
 
 
-
-
     
 
 
