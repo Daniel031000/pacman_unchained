@@ -38,6 +38,7 @@ def getAnimationFromSpritesheet(sheetName, folderName, numberOfHorizontalSprites
 
 
 class MySprite(pygame.sprite.Sprite):
+    # constructor for MySprite
     def __init__(self, spriteName, properties): #horSprites, vertSprites, horStart, vertStart, numberOfImages
         self.images = []
         print(len(properties))

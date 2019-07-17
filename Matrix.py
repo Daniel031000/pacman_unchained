@@ -5,134 +5,49 @@ import time
 import ani
 import globalVariables as gV
 import player as p
+
 gameRunning = True
 pygame.display.set_caption("PacMan von Daniel Khadra")
-#Erstellen einer Matrix/Spielfelds
 
-def BauL1(Spielfeld): #Spielfeld von Level 1
-    #ObereWand
-    Spielfeld[0][0] = 1
-    Spielfeld[1][0] = 1
-    Spielfeld[2][0] = 1
-    Spielfeld[3][0] = 1
-    Spielfeld[4][0] = 1
-    Spielfeld[5][0] = 1
-    Spielfeld[6][0] = 1
-    Spielfeld[7][0] = 1
-    Spielfeld[8][0] = 1
-    Spielfeld[9][0] = 1
-    Spielfeld[10][0] = 1
-    Spielfeld[11][0] = 1
-    Spielfeld[12][0] = 1
-    Spielfeld[13][0] = 1
-    Spielfeld[14][0] = 1
-    Spielfeld[15][0] = 1
-    Spielfeld[16][0] = 1
-    Spielfeld[17][0] = 1
-    Spielfeld[18][0] = 1
-    Spielfeld[19][0] = 1
-    Spielfeld[20][0] = 1
-    Spielfeld[21][0] = 1
-    Spielfeld[22][0] = 1
-    Spielfeld[23][0] = 1
-    Spielfeld[24][0] = 1
-    Spielfeld[25][0] = 1
-    Spielfeld[26][0] = 1
-    Spielfeld[27][0] = 1
-    Spielfeld[28][0] = 1
-    Spielfeld[29][0] = 1
-    Spielfeld[30][0] = 1
-    Spielfeld[31][0] = 1
-    Spielfeld[32][0] = 1
-    Spielfeld[33][0] = 1
-    Spielfeld[34][0] = 1
-    Spielfeld[35][0] = 1
-    Spielfeld[36][0] = 1
-    Spielfeld[37][0] = 1
-    Spielfeld[38][0] = 1
-    Spielfeld[39][0] = 1
-#Spielfeld Rand Unten
-    Spielfeld[0][19] = 1
-    Spielfeld[1][19] = 1
-    Spielfeld[2][19] = 1
-    Spielfeld[3][19] = 1
-    Spielfeld[4][19] = 1
-    Spielfeld[5][19] = 1
-    Spielfeld[6][19] = 1
-    Spielfeld[7][19] = 1
-    Spielfeld[8][19] = 1
-    Spielfeld[9][19] = 1
-    Spielfeld[10][19] = 1
-    Spielfeld[11][19] = 1
-    Spielfeld[12][19] = 1
-    Spielfeld[13][19] = 1
-    Spielfeld[14][19] = 1
-    Spielfeld[15][19] = 1
-    Spielfeld[16][19] = 1
-    Spielfeld[17][19] = 1
-    Spielfeld[18][19] = 1
-    Spielfeld[19][19] = 1
-    Spielfeld[20][19] = 1
-    Spielfeld[21][19] = 1
-    Spielfeld[22][19] = 1
-    Spielfeld[23][19] = 1
-    Spielfeld[24][19] = 1
-    Spielfeld[25][19] = 1
-    Spielfeld[26][19] = 1
-    Spielfeld[27][19] = 1
-    Spielfeld[28][19] = 1
-    Spielfeld[29][19] = 1
-    Spielfeld[30][19] = 1
-    Spielfeld[31][19] = 1
-    Spielfeld[32][19] = 1
-    Spielfeld[33][19] = 1
-    Spielfeld[34][19] = 1
-    Spielfeld[35][19] = 1
-    Spielfeld[36][19] = 1
-    Spielfeld[37][19] = 1
-    Spielfeld[38][19] = 1
-    Spielfeld[39][19] = 1
-#Spielfeld Rand Links
-    Spielfeld[0][0] = 1
-    Spielfeld[0][1] = 1
-    Spielfeld[0][2] = 1
-    Spielfeld[0][3] = 1
-    Spielfeld[0][4] = 1
-    Spielfeld[0][5] = 1
-    Spielfeld[0][6] = 1
-    Spielfeld[0][7] = 1
-    Spielfeld[0][8] = 1
-    Spielfeld[0][10] = 1
-    Spielfeld[0][11] = 1
-    Spielfeld[0][12] = 1
-    Spielfeld[0][13] = 1
-    Spielfeld[0][14] = 1
-    Spielfeld[0][15] = 1
-    Spielfeld[0][16] = 1
-    Spielfeld[0][17] = 1
-    Spielfeld[0][18] = 1
-    Spielfeld[0][19] = 1
-#Spielfeld Rand Rechts
-    Spielfeld[39][0] = 1
-    Spielfeld[39][1] = 1
-    Spielfeld[39][2] = 1
-    Spielfeld[39][3] = 1
-    Spielfeld[39][4] = 1
-    Spielfeld[39][5] = 1
-    Spielfeld[39][6] = 1
-    Spielfeld[39][7] = 1
-    Spielfeld[39][8] = 1
-    Spielfeld[39][10] = 1
-    Spielfeld[39][11] = 1
-    Spielfeld[39][12] = 1
-    Spielfeld[39][13] = 1
-    Spielfeld[39][14] = 1
-    Spielfeld[39][15] = 1
-    Spielfeld[39][16] = 1
-    Spielfeld[39][17] = 1
-    Spielfeld[39][18] = 1
-    Spielfeld[39][19] = 1
-#InneresLevel1 (nach jeder y Koordinate aufgeteilt)
+##########################
+# Erstellen einer Matrix/Spielfelds
+##########################
+
+
+# nimmt die Positionseigenschaften einer Wandeinheit und
+# generiert eine Liste, die weitere Listen enthaelt mit jeweils 2 Elementen
+# Dabei ist das erste Element die x-Koordinate und das zweite die y-Koordinate
+def wand_liste(anfangs_x, anfangs_y, breite, hoehe):
+    raster_indizen = []
+    for x in range(breite):
+        for y in range(hoehe):
+            raster_indizen.append([anfangs_x + x, anfangs_y + y])
+    return raster_indizen
+
+
+# gibt eine liste, die alle Koordinaten der Wandeinheiten enthaelt
+def waende_liste(wand_position_liste):
+    waende_raster_liste = []
+    for wand in wand_position_liste:
+        for wand_koordinate in wand_liste(wand[0], wand[1], wand[2], wand[3]):
+            waende_raster_liste.append(wand_koordinate)
+    return waende_raster_liste
+
+
+# erstellt die Wände (blauen Teile) des Spielfelds
+def BauL1(Spielfeld): # Spielfeld von Level 1
+    # Rand
+    wand_position_liste = [
+        [0, 0, 40, 1],
+        [0, 19, 40, 1],
+        [0, 1, 1, 18],
+        [39, 1, 1, 18],
+        [19, 1, 2, 1]
+    ]
+    for koordinate in waende_liste(wand_position_liste):
+        Spielfeld[koordinate[0]][koordinate[1]] = 1
+
+    # InneresLevel1 (nach jeder y Koordinate aufgeteilt)
     Spielfeld[19][1] = 1
     Spielfeld[20][1] = 1
     Spielfeld[2][2] = 1
@@ -451,40 +366,40 @@ def BauL1(Spielfeld): #Spielfeld von Level 1
     Spielfeld[37][17] = 1
     Spielfeld[19][19] = 1
     Spielfeld[20][19] = 1
-    pass 
-
-
-    
-
+    pass
 
 
 def Matrix():
+        # Größe eines kleinsten Quadrates
         Größe = 25
         Spielfeld=[]
-        x = int(1000/Größe)
-        y = int(500/Größe)
+        x = int(1000/Größe)  # = 40
+        y = int(500/Größe)  # = 20
+
+        # fill Spielfeld 2d array with 3
         for i_x in range(0, x):
                 Spielfeld.append([])
                 for i_y in range(0, y):
                     Spielfeld[i_x].append(3)
+        # print(Spielfeld)
         BauL1(Spielfeld)
+        # display size = (1000, 500)
         Bild = pygame.display.set_mode((x*Größe, y*Größe))
         pacman_x = 9
         pacman_y = 6
+        # Pacman Anfangsposition = 2
         Spielfeld[pacman_x][pacman_y] = 2
 
-            
+        # checks the
         for i_x in range(0, x):
             for i_y in range(0, y):
                 aktField = Spielfeld[i_x][i_y]
                 #Empty Field
                 if(aktField == 0):
                     pygame.draw.rect(Bild, (0,0,0), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
-
                 #player
                 if (aktField == 2):
                     pass
-
                 #Wall
                 if (aktField == 1):
                     pygame.draw.rect(Bild, (0,0,255), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
@@ -502,10 +417,10 @@ def Matrix():
 
         player = p.player("Daniel")
         gameObjects.append(player)
-        mouthCounter=0
+        mouthCounter = 0
 
+        # TODO: gameRunning is always True anyway?
         while gameRunning:
-
             for gO in gameObjects:
                 gO.update()
 
@@ -518,7 +433,6 @@ def Matrix():
                     pygame.quit()
                     sys.exit()
 
-            
             #Draw GameObjects
             for gO in gameObjects:
                 Bild.blit(gO.imgToDraw(), (gO.pos[0] - (gO.imgToDraw().get_rect().size[0] / 2), gO.pos[1] - (gO.imgToDraw().get_rect().size[1] / 2)))
@@ -527,14 +441,13 @@ def Matrix():
             pygame.display.update()
 
             if (mouthCounter < 4):
-                    mouthCounter = mouthCounter + 1
+                mouthCounter = mouthCounter + 1
             else:
-                    mouthCounter = 0
-
-            
-
+                mouthCounter = 0
             #Set 30 fps
             clock.tick(30) # 32 fps
+
+
 Matrix()    
 pygame.display.flip()
 
