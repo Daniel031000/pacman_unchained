@@ -1,1 +1,2 @@
 pyEvents = []
+Spielfeld = []
