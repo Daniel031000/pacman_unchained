@@ -10,9 +10,9 @@ class gamePlatform:
         self.position = startPos
         self.hitBox = hitBox
 
-##############
-#Enemy der zufällig läuft
-#############
+##########################
+#Enemy der zufällig läuft#
+##########################
 import random
 class Geist:
     def Grundstock(self):
@@ -26,4 +26,4 @@ class Geist:
         else:
             self.movementDirection[1] = random(-1, 1)
             self.movementDirection[0] = 0
-     def Image(self):
+     def Image00(self):
