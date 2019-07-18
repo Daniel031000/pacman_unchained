@@ -845,7 +845,7 @@ def Matrix():
     # pacman Startkoordinaten
     pacman_x = 9
     pacman_y = 6
-    # sSpielfeld[pacman_x][pacman_y] = 2
+    # Spielfeld[pacman_x][pacman_y] = 2
 
     # loops through "Spielfeld" and draws squares with the appropriate colours
 
@@ -860,8 +860,10 @@ def Matrix():
     gameObjects.append(player)
     mouthCounter = 0
 
+
     # TODO: gameRunning is always True anyway?
     while gameRunning:
+
         for i_x in range(x):
             for i_y in range(y):
                 aktField = gV.Spielfeld[i_x][i_y]  # aktives Feld
@@ -877,6 +879,7 @@ def Matrix():
                 # einzelne Punkte einfügen
                 if (aktField == 3):
                     pygame.draw.rect(Bild, (255, 201, 41), [i_x * Größe, i_y * Größe, Größe, Größe], 0)
+
         for gO in gameObjects:
             gO.update()
 
