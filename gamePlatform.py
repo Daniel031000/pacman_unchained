@@ -28,4 +28,4 @@ class Geist:
         else:
             self.movementDirection[1] = random(-1, 1)
             self.movementDirection[0] = 0
-     def Image00(self):
+     def Image(self):
