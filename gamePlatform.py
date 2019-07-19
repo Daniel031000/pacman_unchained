@@ -20,9 +20,11 @@ class Geist:
         self.movementSpeed=5
     def Moving(self):
         while gameRunning:
-        self.movementDirection[0] = random(-1,1)
-        if self.movementDirection[0]= -1,1:
+        self.movementDirection[random(0,1)] = random(-1,1)
+        if self.movementDirection[0]== -1:
             self.movementDirection[1]=0
+        elif self.movementDirection[0]==1:
+            self.movementDirection[1] = 0
         else:
             self.movementDirection[1] = random(-1, 1)
             self.movementDirection[0] = 0
