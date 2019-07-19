@@ -32,7 +32,7 @@ class player:  # PacMan als Klasse definieren
                     self.movementDirection[0] = -1
                     self.currentAnimationType = "Walk"
                     self.movementDirection[1] = 0  # Damit er nicht diagonal läuft
-
+                    if
                 elif event.key in (pygame.K_RIGHT, pygame.K_d):
                     self.movementDirection[0] = 1
                     self.currentAnimationType = "Walk"
@@ -47,7 +47,7 @@ class player:  # PacMan als Klasse definieren
                     self.movementDirection[1] = 1
                     self.currentAnimationType = "Walk"
                     self.movementDirection[0] = 0
-                    
+
 
         self.pos = [x + y for x, y in zip(self.pos, [i * self.movementSpeed for i in self.movementDirection])]
 
