@@ -24,28 +24,28 @@ pygame.display.set_caption("PacMan von Daniel Khadra")
 def Matrix():
         # Größe eines kleinsten Quadrates
         Größe = 25
-        Spielfeld=[]
+
         x = int(1000/Größe)  # = 40
         y = int(500/Größe)  # = 20
 
         # fill Spielfeld 2d array with 3
         for i_x in range(0, x):
-                Spielfeld.append([])
+                gV.Spielfeld.append([])
                 for i_y in range(0, y):
-                    Spielfeld[i_x].append(3)
+                    gV.Spielfeld[i_x].append(3)
         # print(Spielfeld)
-        spielfeldLevel1.BauL1(Spielfeld)
+        spielfeldLevel1.BauL1(gV.Spielfeld)
         # display size = (1000, 500)
         Bild = pygame.display.set_mode((x*Größe, y*Größe))
         pacman_x = 9
         pacman_y = 6
         # Pacman Anfangsposition = 2
-        Spielfeld[pacman_x][pacman_y] = 2
+        gV.Spielfeld[pacman_x][pacman_y] = 2
 
         # checks the
         for i_x in range(0, x):
             for i_y in range(0, y):
-                aktField = Spielfeld[i_x][i_y]
+                aktField = gV.Spielfeld[i_x][i_y]
                 #Empty Field
                 if(aktField == 0):
                     pygame.draw.rect(Bild, (0,0,0), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
@@ -120,7 +120,7 @@ def Matrix():
 
     # Alle Koordinaten, die eine Wand werden sollen,
     # werden mit dieer Funktion gleich 2 gesetzt
-    BauL1(gV.Spielfeld)
+    spielfeldLevel1.BauL1(gV.Spielfeld)
 
     Bild = pygame.display.set_mode((x * Größe, y * Größe))  # display size = (1000, 500)
 
