@@ -1,2 +1,5 @@
+playerPosition=[]
 pyEvents = []
 Spielfeld = []
+pixelColours=[]
+Größe=[]

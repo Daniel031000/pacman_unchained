@@ -21,12 +21,12 @@ pygame.display.set_caption("PacMan von Daniel Khadra")
 # Dabei ist das erste Element die x-Koordinate und das zweite die y-Koordinate
 
 
-def Matrix():
+def main():
         # Größe eines kleinsten Quadrates
-        Größe = 25
+        gV.Größe = 25
 
-        x = int(1000/Größe)  # = 40
-        y = int(500/Größe)  # = 20
+        x = int(1000/gV.Größe)  # = 40
+        y = int(500/gV.Größe)  # = 20
 
         # fill Spielfeld 2d array with 3
         for i_x in range(0, x):
@@ -48,18 +48,23 @@ def Matrix():
                 aktField = gV.Spielfeld[i_x][i_y]
                 #Empty Field
                 if(aktField == 0):
-                    pygame.draw.rect(Bild, (0,0,0), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
+                    pygame.draw.rect(Bild, (0,0,0), [i_x*gV.Größe,i_y*gV.Größe, gV.Größe, gV.Größe], 0)
                 #player
                 if (aktField == 2):
                     pass
                 #Wall
                 if (aktField == 1):
-                    pygame.draw.rect(Bild, (0,0,255), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
+                    pygame.draw.rect(Bild, (0,0,255), [i_x*gV.Größe,i_y*gV.Größe, gV.Größe, gV.Größe], 0)
                 #einzelne Punkte einfügen
                 if (aktField == 3):
-                    pygame.draw.rect(Bild, (255,201,41), [i_x*Größe,i_y*Größe, Größe, Größe], 0)
+                    pygame.draw.rect(Bild, (255,201,41), [i_x*gV.Größe,i_y*gV.Größe, gV.Größe, gV.Größe], 0)
 
-
+        for x in range (1000):
+            pixelRow=[]
+            for y in range (500):
+                pixelRow.append(pygame.display.get_surface().get_at((x,y)))
+            gV.pixelColours.append(pixelRow)
+        print(gV.pixelColours)
         pygame.key.set_repeat(1, 30)
 
         pygame.init()
@@ -71,8 +76,10 @@ def Matrix():
         gameObjects.append(player)
         mouthCounter = 0
 
+
         # TODO: gameRunning is always True anyway?
         while gameRunning:
+            gV.playerPosition=player.pos
             for gO in gameObjects:
                 gO.update()
 
@@ -100,7 +107,7 @@ def Matrix():
             clock.tick(30) # 32 fps
 
 
-Matrix()
+main()
 pygame.display.flip()
 
 

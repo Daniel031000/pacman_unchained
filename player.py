@@ -32,7 +32,8 @@ class player:  # PacMan als Klasse definieren
                     self.movementDirection[0] = -1
                     self.currentAnimationType = "Walk"
                     self.movementDirection[1] = 0  # Damit er nicht diagonal läuft
-
+                    '''#if gV.playerPosition:
+                        x-1=x'''
                 elif event.key in (pygame.K_RIGHT, pygame.K_d):
                     self.movementDirection[0] = 1
                     self.currentAnimationType = "Walk"
@@ -119,4 +120,16 @@ class player:  # PacMan als Klasse definieren
                 self.playerSpriteIdle.reset()
                 self.playerSpriteWalkUp.reset()
                 self.playerSpriteWalkDown.reset()
+
+def isStripmoveable(playerPosition, directionx,directiony):
+    Stripstart=[playerPosition[0]+directionx,playerPosition[1]+directiony]
+    stripistriversiable= True
+    for i in range (25):
+        if gV.pixelColours[Stripstart[[0]-directionx*i],Stripstart[[1]-directiony*i]]==(0,0,255,255):
+            stripistriversiable=False
+            break
+        if directiony == -1:
+            gV.Größe*
+
+    return stripistriversiable
 
