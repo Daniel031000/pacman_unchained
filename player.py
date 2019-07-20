@@ -2,14 +2,13 @@ import pygame
 import ani
 import globalVariables as gV
 
-pacman_x = 9
-pacmany_y = 6
+
 
 
 class player:  # PacMan als Klasse definieren
     def __init__(self, name):
         self.name = name
-        self.pos = [235, 160]  # Startposition
+        self.pos = [237, 163]  # Startposition
         self.movementDirection = [0, 0]  # eigene Bewegung
         self.movementSpeed = 5  # der Speed in dem er sich bewegt sobald ein event gestartet wird
         # einzelne Animationen aus den Ordnern
@@ -29,25 +28,37 @@ class player:  # PacMan als Klasse definieren
         for event in gV.pyEvents:
             if event.type == pygame.KEYDOWN:
                 if event.key in (pygame.K_LEFT, pygame.K_a):
-                    self.movementDirection[0] = -1
-                    self.currentAnimationType = "Walk"
-                    self.movementDirection[1] = 0  # Damit er nicht diagonal läuft
-                    '''#if gV.playerPosition:
-                        x-1=x'''
+                    if isStripmoveable(gV.playerPosition,0):
+                        self.movementDirection[0] = -1
+                        self.currentAnimationType = "Walk"
+                        self.movementDirection[1] = 0  # Damit er nicht diagonal läuft
+                    else:
+                        self.movementDirection[0]=0
+                        self.movementDirection[1]=0
                 elif event.key in (pygame.K_RIGHT, pygame.K_d):
-                    self.movementDirection[0] = 1
-                    self.currentAnimationType = "Walk"
-                    self.movementDirection[1] = 0
-
+                    if isStripmoveable(gV.playerPosition,1):
+                        self.movementDirection[0] = 1
+                        self.currentAnimationType = "Walk"
+                        self.movementDirection[1] = 0
+                    else:
+                        self.movementDirection[0]=0
+                        self.movementDirection[1]=0
                 elif event.key in (pygame.K_UP, pygame.K_w):
-                    self.movementDirection[1] = -1
-                    self.currentAnimationType = "Walk"
-                    self.movementDirection[0] = 0
-
+                    if isStripmoveable(gV.playerPosition,2):
+                        self.movementDirection[1] = -1
+                        self.currentAnimationType = "Walk"
+                        self.movementDirection[0] = 0
+                    else:
+                        self.movementDirection[0]=0
+                        self.movementDirection[1]=0
                 elif event.key in (pygame.K_DOWN, pygame.K_s):
-                    self.movementDirection[1] = 1
-                    self.currentAnimationType = "Walk"
-                    self.movementDirection[0] = 0
+                    if isStripmoveable(gV.playerPosition,3):
+                        self.movementDirection[1] = 1
+                        self.currentAnimationType = "Walk"
+                        self.movementDirection[0] = 0
+                    else:
+                        self.movementDirection[0]=0
+                        self.movementDirection[1]=0
 
 
         self.pos = [x + y for x, y in zip(self.pos, [i * self.movementSpeed for i in self.movementDirection])]
@@ -120,16 +131,36 @@ class player:  # PacMan als Klasse definieren
                 self.playerSpriteIdle.reset()
                 self.playerSpriteWalkUp.reset()
                 self.playerSpriteWalkDown.reset()
+#Funktion zur Einhaltung vom Weg des Packmans
+#Direction nimmt ein wert zwischen 0 und 3
+def isStripmoveable(playerPosition, direction):
+    stripistrevirsible = True
+    if direction ==0:#left
+        stripStartingpoint=[playerPosition[0]-1,playerPosition[1]] #Startpunktfinden
+        for i in range (25): #Alle 25 Pixel testen
+            activePixel=[stripStartingpoint[0],stripStartingpoint[1]+i] #Den Pixel vor dem PacMan definieren
+            if pygame.display.get_surface().get_at(activePixel)==(0,0,255,255): #testen, ob dieser gleicg blau ist
+                stripistrevirsible=False
+    elif direction==1: #right
+            stripStartingpoint = [playerPosition[0] + 1, playerPosition[1]]  # Startpunktfinden
+            for i in range(25):  # Alle 25 Pixel testen
+                activePixel = [stripStartingpoint[0], stripStartingpoint[1] + i+ gV.Größe]  # Den Pixel vor dem PacMan definieren
+                if pygame.display.get_surface().get_at(activePixel) == (0, 0, 255, 255):  # testen, ob dieser gleicg blau ist
+                    stripistrevirsible = False
+    elif direction==2: #Up
+        stripStartingpoint = [playerPosition[0], playerPosition[1]-1]  # Startpunktfinden
+        for i in range(25):  # Alle 25 Pixel testen
+            activePixel = [stripStartingpoint[0]+ i,stripStartingpoint[1]]  # Den Pixel vor dem PacMan definieren
+            if pygame.display.get_surface().get_at(activePixel) == (0, 0, 255, 255):  # testen, ob dieser gleicg blau ist
+                stripistrevirsible = False
 
-def isStripmoveable(playerPosition, directionx,directiony):
-    Stripstart=[playerPosition[0]+directionx,playerPosition[1]+directiony]
-    stripistriversiable= True
-    for i in range (25):
-        if gV.pixelColours[Stripstart[[0]-directionx*i],Stripstart[[1]-directiony*i]]==(0,0,255,255):
-            stripistriversiable=False
-            break
-        if directiony == -1:
-            gV.Größe*
+    elif direction==3: #Down
+        stripStartingpoint = [playerPosition[0], playerPosition[1] +gV.Größe]  # Startpunktfinden
+        for i in range(25):  # Alle 25 Pixel testen
+            activePixel = [stripStartingpoint[0] + i, stripStartingpoint[1]]  # Den Pixel vor dem PacMan definieren
+            if pygame.display.get_surface().get_at(activePixel) == (
+            0, 0, 255, 255):  # testen, ob dieser gleicg blau ist
+                stripistrevirsible = False
 
-    return stripistriversiable
+    return stripistrevirsible
 

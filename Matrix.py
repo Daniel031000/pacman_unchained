@@ -36,7 +36,7 @@ def main():
         # print(Spielfeld)
         spielfeldLevel1.BauL1(gV.Spielfeld)
         # display size = (1000, 500)
-        Bild = pygame.display.set_mode((x*Größe, y*Größe))
+        Bild = pygame.display.set_mode((x*gV.Größe, y*gV.Größe))
         pacman_x = 9
         pacman_y = 6
         # Pacman Anfangsposition = 2
@@ -64,7 +64,6 @@ def main():
             for y in range (500):
                 pixelRow.append(pygame.display.get_surface().get_at((x,y)))
             gV.pixelColours.append(pixelRow)
-        print(gV.pixelColours)
         pygame.key.set_repeat(1, 30)
 
         pygame.init()
